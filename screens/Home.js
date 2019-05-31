@@ -5,6 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ImageBackground,
+  Image,
 } from 'react-native';
 
 /** Components import  */
@@ -37,17 +39,31 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Page home</Text>
-        <Button
-          title="Postes"
-          onPress={() => this.handleGotoPosts()}
-          iconRight
-          icon={
-            <Icon style={{ marginLeft: 15 }} name="add-circle" size={25} color="white" />
+        <ImageBackground
+          source={require('../assets/images/back_img.png')}
+          style={styles.img}
+        >
+          <View style={styles.wrapper}>
+            <Text style={styles.title}>Application test</Text>
+            <Image
+              source={require('../assets/images/logo.png')}
+              style={styles.logo}
+            />
+            <Text style={styles.subtitle}>Jean-Aurel Bousquet</Text>
+          </View>
+          <View style={styles.wrapper}>
+            <Button
+              title="Postes"
+              onPress={() => this.handleGotoPosts()}
+              iconRight
+              icon={
+                <Icon style={{ marginLeft: 15 }} name="keyboard-arrow-right" size={20} color="white" />
               }
-          buttonStyle={styles.addBtn}
-          TouchableComponent={TouchableOpacity}
-        />
+              buttonStyle={styles.addBtn}
+              TouchableComponent={TouchableOpacity}
+            />
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -57,6 +73,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'stretch',
+  },
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addBtn: {
+    borderRadius: 20,
+    backgroundColor: '#9900ff',
+    paddingHorizontal: 50,
+  },
+  img: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 15,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: 'white',
+    marginBottom: 15,
+  },
+  logo: {
+    width: '80%',
+    height: 50,
+    marginBottom: 50,
   },
 });
 
