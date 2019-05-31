@@ -5,6 +5,13 @@ import {
 import {
  AppLoading, Asset, Font, Icon,
 } from 'expo';
+
+/** Redux */
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor, store } from './redux/store';
+
+/** Router */
 import AppNavigator from './navigation/AppNavigator';
 
 class App extends React.Component {
@@ -41,7 +48,11 @@ handleFinishLoading = () => {
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
+          <Provider store={store}>
+            <PersistGate persistor={persistor}>
+              <AppNavigator />
+            </PersistGate>
+          </Provider>
         </View>
       );
   }
