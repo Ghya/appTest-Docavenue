@@ -26,6 +26,13 @@ import { postFetch, postsLoading } from '../redux/actions';
 class Posts extends React.Component {
   static navigationOptions = {
     title: 'Postes',
+    headerStyle: {
+      backgroundColor: '#9900ff',
+    },
+    headerTitleStyle: {
+      color: '#fff',
+    },
+    headerTintColor: '#fff',
   };
 
   static propTypes = {
@@ -97,11 +104,12 @@ class Posts extends React.Component {
           )}
           ListFooterComponent={() => (
             <Button
-              title="Postes"
+              title="Afficher plus"
               onPress={() => this.handleLoadMore()}
+              disabled={this.state.max === 50}
               iconRight
               icon={
-                <Icon style={{ marginLeft: 15 }} name="add-circle" size={25} color="white" />
+                <Icon style={{ marginLeft: 15 }} name="keyboard-arrow-down" size={25} color="white" />
               }
               buttonStyle={styles.addBtn}
               TouchableComponent={TouchableOpacity}
@@ -126,8 +134,11 @@ const styles = StyleSheet.create({
   },
   addBtn: {
     borderRadius: 20,
-    backgroundColor: 'blue',
+    backgroundColor: '#9900ff',
     paddingHorizontal: 50,
+    width: '70%',
+    marginVertical: 20,
+    alignSelf: 'center',
   },
 });
 
