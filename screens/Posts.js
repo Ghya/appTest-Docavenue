@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
@@ -30,6 +29,7 @@ class Posts extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     postFetch: PropTypes.func,
+    postsLoading: PropTypes.func,
     posts: PropTypes.array,
   };
 
@@ -41,10 +41,20 @@ class Posts extends React.Component {
     };
   }
 
+  /**
+   * Initialize loading component then,
+   * Fetch post
+   *
+   * (End of loading handle by fetch method)
+   */
   componentDidMount = () => {
+    this.props.postsLoading(true);
     this.props.postFetch();
   }
 
+  /**
+   * Increase 'max' state for pagination
+   */
   handleLoadMore = () => {
     const { max } = this.state;
     this.setState({
@@ -100,6 +110,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  addBtn: {
+    borderRadius: 20,
+    backgroundColor: 'blue',
+    paddingHorizontal: 50,
   },
 });
 
