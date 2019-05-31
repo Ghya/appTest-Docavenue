@@ -13,6 +13,7 @@ import {
 import { Button } from 'react-native-elements';
 import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import ListViewPosts from '../components/ListViewPosts';
 
 /** Redux Actions import */
 import { postFetch, postsLoading } from '../redux/actions';
@@ -69,7 +70,7 @@ class Posts extends React.Component {
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
-            <Text>{item.title}</Text>
+            <ListViewPosts item={item} />
           )}
           ListFooterComponent={() => (
             <Button
