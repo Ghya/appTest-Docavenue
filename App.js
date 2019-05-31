@@ -20,7 +20,11 @@ class App extends React.Component {
   };
 
   loadResourcesAsync = async () => Promise.all([
-    Asset.loadAsync([]),
+    Asset.loadAsync([
+      require('./assets/images/splash.png'),
+      require('./assets/images/avatar.jpg'),
+      require('./assets/images/back_img.png'),
+    ]),
     Font.loadAsync({
       ...Icon.Ionicons.font,
       'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
