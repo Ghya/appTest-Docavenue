@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
+  NetInfo,
+  Alert,
 } from 'react-native';
 
 /** Components import  */
@@ -42,14 +44,25 @@ class Posts extends React.Component {
   }
 
   /**
-   * Initialize loading component then,
-   * Fetch post
+   *  - Initialize loading component then,
+   *  - Check Internet connection
+   *  - Fetch post
    *
    * (End of loading handle by fetch method)
    */
   componentDidMount = () => {
     this.props.postsLoading(true);
-    this.props.postFetch();
+    const connectionType = this.getConnectionType();
+    if (connectionType === 'none') {
+      Alert.alert('Aucune connexion internet détéctée \n\n Posts chargés en local');
+      this.props.postsLoading(false);
+    } else {
+      this.props.postFetch();
+    }
+  }
+
+  getConnectionType = () => {
+    NetInfo.getConnectionInfo().then(connectionInfo => connectionInfo.type);
   }
 
   /**
