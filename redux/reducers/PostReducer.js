@@ -10,6 +10,9 @@ export default (state = INITAL_STATE, action) => {
 		case POST_IS_LOADING:
 			return { ...state, isLoading: action.payload };
 		case SET_POST:
+			/**
+			 * order post by title's first letter
+			 */
 			const orderedPost = action.payload.sort((a, b) => {
 				const textA = a.title.toUpperCase();
 				const textB = b.title.toUpperCase();

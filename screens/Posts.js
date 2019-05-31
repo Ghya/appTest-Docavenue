@@ -22,7 +22,6 @@ import { postFetch, postsLoading } from '../redux/actions';
 /**
  * Class HOME
  */
-
 class Posts extends React.Component {
   static navigationOptions = {
     title: 'Postes',
@@ -68,6 +67,9 @@ class Posts extends React.Component {
     }
   }
 
+  /**
+   * Get devices's internet connection informations
+   */
   getConnectionType = () => {
     NetInfo.getConnectionInfo().then(connectionInfo => connectionInfo.type);
   }

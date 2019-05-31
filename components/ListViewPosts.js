@@ -6,6 +6,12 @@ import PropTypes from 'prop-types';
 
 import { EvilIcons as Icon } from '@expo/vector-icons';
 
+
+/**
+ * Class listview (PureComponent)
+ *
+ * Call in Posts's Flaltlist
+ */
 class ListViewPosts extends React.PureComponent {
   static propTypes = {
     item: PropTypes.object,
@@ -18,6 +24,9 @@ class ListViewPosts extends React.PureComponent {
     };
   }
 
+  /**
+   * Set first letter tu upperCase
+   */
   firstToUpperCase = string => (
     string.charAt(0).toUpperCase() + string.slice(1)
   );

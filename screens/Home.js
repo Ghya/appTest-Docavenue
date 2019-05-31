@@ -25,6 +25,9 @@ class Home extends React.Component {
     navigation: PropTypes.object,
   };
 
+  /**
+   * Handle navigation to page Posts
+   */
   handleGotoPosts= () => {
     this.props.navigation.navigate('Posts');
   }
