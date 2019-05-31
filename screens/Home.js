@@ -4,7 +4,12 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
+
+/** Components import  */
+import { Button } from 'react-native-elements';
+import { MaterialIcons as Icon } from '@expo/vector-icons';
 
 /**
  * Class HOME
@@ -18,6 +23,10 @@ class Home extends React.Component {
     navigation: PropTypes.object,
   };
 
+  handleGotoPosts= () => {
+    this.props.navigation.navigate('Posts');
+  }
+
   /**
    * handle navigation to page : POSTS
    */
@@ -29,6 +38,16 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Page home</Text>
+        <Button
+          title="Postes"
+          onPress={() => this.handleGotoPosts()}
+          iconRight
+          icon={
+            <Icon style={{ marginLeft: 15 }} name="add-circle" size={25} color="white" />
+              }
+          buttonStyle={styles.addBtn}
+          TouchableComponent={TouchableOpacity}
+        />
       </View>
     );
   }
