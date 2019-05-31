@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
+  Text,
   TouchableOpacity,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 
 /** Components import  */
@@ -32,15 +34,27 @@ class Posts extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      min: 0,
+      max: 10,
+    };
   }
 
   componentDidMount = () => {
     this.props.postFetch();
   }
 
+  handleLoadMore = () => {
+    const { max } = this.state;
+    this.setState({
+      max: max + 10,
+    });
+  }
+
   render() {
-      console.log(this.props.posts);
+    const { min, max } = this.state;
+    const listData = this.props.posts.slice(min, max);
+      console.log(listData);
     if (this.props.isLoading) {
         return (
           <View style={styles.loadContainer}>
@@ -49,15 +63,26 @@ class Posts extends React.Component {
         );
     } return (
       <View style={styles.container}>
-        <Button
-          title="Postes"
-          onPress={() => this.handleLoadMore()}
-          iconRight
-          icon={
-            <Icon style={{ marginLeft: 15 }} name="add-circle" size={25} color="white" />
-            }
-          buttonStyle={styles.addBtn}
-          TouchableComponent={TouchableOpacity}
+        <FlatList
+          data={listData}
+          extraData={this.state.max}
+          keyExtractor={(item, index) => index.toString()}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Text>{item.title}</Text>
+          )}
+          ListFooterComponent={() => (
+            <Button
+              title="Postes"
+              onPress={() => this.handleLoadMore()}
+              iconRight
+              icon={
+                <Icon style={{ marginLeft: 15 }} name="add-circle" size={25} color="white" />
+              }
+              buttonStyle={styles.addBtn}
+              TouchableComponent={TouchableOpacity}
+            />
+          )}
         />
       </View>
     );
